@@ -1,0 +1,33 @@
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, InputBase, IconButton } from '@mui/material';
+import { Search, AddShoppingCart, ExitToApp } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+
+const NavigationBar = ({ isLoggedIn, isAdmin }) => {
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Eshop Logo
+        </Typography>
+        {isLoggedIn ? (
+          <>
+            <InputBase placeholder="Search..." sx={{ mr: 1 }} />
+            <Link to="/">Home</Link>
+            <Button color="inherit" startIcon={<ExitToApp />}>
+              Log Out
+            </Button>
+            {isAdmin && <Link to="/add-products">Add Products</Link>}
+          </>
+        ) : (
+          <>
+            <Link to="/login">Log In</Link>
+            <Link to="/signup">Sign Up</Link>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default NavigationBar;
